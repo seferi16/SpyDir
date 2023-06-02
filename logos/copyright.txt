@@ -1,0 +1,15 @@
+zip.png --> https://www.flaticon.com/free-icon/zip_2580572
+img.png --> https://www.flaticon.com/free-icon/photo_3792702
+mov.png --> https://www.flaticon.com/free-icon/youtube_3845856
+mp3.png --> https://www.flaticon.com/free-icon/music-store-app_3698272
+shell.png --> https://www.flaticon.com/free-icon/cmd_7207229
+txt.png --> https://www.flaticon.com/free-icon/txt_4563288
+exe.png --> https://www.flaticon.com/free-icon/exe-file_8257845
+ukn.png --> https://www.flaticon.com/free-icon/unknown_8023214
+json.png --> https://www.flaticon.com/free-icon/json_617517
+pdf.png --> https://www.flaticon.com/free-icon/pdf_337946
+xls.png --> https://www.flaticon.com/free-icon/sheets_2504768
+js.png --> https://www.flaticon.com/free-icon/js_5968292
+css.png --> https://www.flaticon.com/free-icon/css-3_5968242
+html.png --> https://www.flaticon.com/free-icon/html-5_5968267
+dll.png --> https://www.flaticon.com/free-icon/dll_2305913
