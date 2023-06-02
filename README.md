@@ -13,8 +13,11 @@ Displaying: The display_dir.pyw GUI application loads the pickle file generated 
 
 Installation
 Clone the repository to your local machine using the command git clone https://github.com/seferi16/SpyDir.git.
+
 Ensure that Python 3.x is installed on your machine.
+
 Install the required Python dependencies by running pip install -r requirements.txt in the project directory.
+
 Usage
 To crawl and save the file information, run the get_all_files.py script. This will gather all file in the machine regardless its OS.
 To display the files, run the display_dir.pyw script. Then load the previously generated pickle file and open the GUI application. Use the intuitive interface to navigate through the directory structure, search for files, and apply filters as needed.
