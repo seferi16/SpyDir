@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtGui import QPixmap
 from directoryGui import Ui_MainWindow
-import re, os, sys, pickle, traceback
+import re, os, sys, pickle, traceback, json
 
 
 
@@ -22,7 +22,9 @@ class myApp(QtWidgets.QMainWindow):
 		self.forward = list()
 		self.cwd = str()
 		self.platform = str()
-		self.known_types = [x[:-4] for x in os.listdir("logos")]
+		with open("extensions.json") as extensions:
+			self.extension_logos = json.load(extensions)
+		self.known_types = self.extension_logos.keys()
 	
 
 		
@@ -61,7 +63,7 @@ class myApp(QtWidgets.QMainWindow):
 			#print(dirs, files)
 			self.generate_symbol(dirs, files)
 		else:
-			print("No such folder.") #throw error.
+			print("No such folder.")
 			self.ui.addressBar.setText(self.cwd)
 
 	def get_directory(self, inq_dir):
@@ -136,13 +138,7 @@ class myApp(QtWidgets.QMainWindow):
 					deleteItemsOfLayout(my_widget)
 				elif my_widget.widget() != None:
 					my_widget.widget().setParent(None)
-				else:
-					print(my_widget, "what is this?")
 
-
-				
-			#print(my_widget)
-			#self.ui.contents.removeItem(my_widget)
 			len_widgets -= 1
 				
 		self.symbol_coordinates = {}
@@ -177,13 +173,15 @@ class myApp(QtWidgets.QMainWindow):
 			self.ui.button.setIconSize(QtCore.QSize(64, 64))
 			self.ui.button.setToolTip(name)
 			if type_ == "dir":
-				extension = "dir"
+				logo_extension = "dir"
 				self.ui.button.clicked.connect(lambda ch, name=name: self.chdir(name))
 			else:
-				extension = name.split(".")[-1]
-				if extension not in self.known_types:
-					extension = "unknown"
-			self.ui.button.setIcon(QtGui.QIcon(f"logos/{extension}.png"))
+				file_extension = name.split(".")[-1]
+				if file_extension in self.known_types:
+					logo_extension = self.extension_logos[file_extension]
+				else:
+					logo_extension = "unknown"
+			self.ui.button.setIcon(QtGui.QIcon(f"logos/{logo_extension}.png"))
 				
 				
 
@@ -206,13 +204,6 @@ class myApp(QtWidgets.QMainWindow):
 				
 			self.pixmap = QPixmap(f"logos/{type_}.png")
 
-		#	if type_ != "dir":
-		#		self.ui.file.setPixmap(self.pixmap)
-		#		self.ui.file.resize(self.pixmap.height(), self.pixmap.width())
-		#		self.ui.file.setScaledContents(True)
-
-			#self.ui.contents.addLayout(self.ui.verticalLayout_12, 0, 4, 1, 1)
-			#pass
 		count = 0
 		
 		for dir in dirs:
